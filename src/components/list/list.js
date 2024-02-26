@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './list.sass';
 
@@ -20,9 +20,8 @@ const List = ({ data }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
         <View style={styles.listContainer}>
-          {peopleData.slice(0, 6).map((person, index) => (
+          {peopleData.map((person, index) => (
             <View key={index} style={styles.itemContainer}>
               {/* Icon */}
               <Image source={require('./icon.png')} style={styles.icon} />
@@ -34,6 +33,8 @@ const List = ({ data }) => {
                 {/* Checkbox */}
                 <View style={styles.checkboxContainer}>
                   <CheckBox
+                    boxType='square' 
+                    onCheckColor='#FF6B40'
                     disabled={false}
                     value={person.active} 
                     onValueChange={() => toggleActive(index)}
@@ -43,7 +44,6 @@ const List = ({ data }) => {
             </View>
           ))}
         </View>
-      </ScrollView>
     </View>
   );
 };
