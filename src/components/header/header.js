@@ -1,22 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import styles from './header.sass'
+import { View, Text, Image } from 'react-native'; 
+import styles from './header.sass'; 
 
-const Header = () => {
+const Header = ({title}) => {
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString('fr-FR', {
     weekday: 'long',
-    year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric',
   });
-
+  
   return (
     <View style={styles.headerContainer}>
-      <View style={styles.dateContainer}>
-        <Text style={styles.dateText}>{formattedDate}</Text>
-      </View>
-      <Text style={styles.headerText}>En-tête de mon application</Text>
+      <Text style={styles.dateContainer}>{formattedDate}</Text>
+      <Text style={styles.titleText}>{title}</Text>
+      <Image source={require('./menu.png')} style={styles.menuIcon} />
     </View>
   );
 };

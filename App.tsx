@@ -5,7 +5,7 @@ import Header from './src/components/header/header';
 const App = () => {
   return (
     <View>
-      <Header/>
+      <Header title="Qui travaille aujourd'hui ?"/>
     </View>
   );
 };
