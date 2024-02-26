@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableWithoutFeedback } from 'react-native'; 
+import { View, Text, TouchableWithoutFeedback } from 'react-native'; 
 import styles from './menu.sass'; 
+import List from '../list/list';
+
+import dataSalle from './dataSalle';
+import dataCuisine from './dataCuisine';
+import dataService from './dataService';
 
 const Menu = () => {  
-  const [selectedMenuItem, setSelectedMenuItem] = useState('salle'); // État pour suivre l'élément sélectionné
+  const [selectedMenuItem, setSelectedMenuItem] = useState('salle');
 
-  // Fonction pour mettre à jour l'élément sélectionné
   const handleMenuItemPress = (item) => {
     setSelectedMenuItem(item);
   };
+
+  let data;
+  switch (selectedMenuItem) {
+    case 'salle':
+      data = dataSalle;
+      break;
+    case 'cuisine':
+      data = dataCuisine;
+      break;
+    case 'service':
+      data = dataService;
+      break;
+    default:
+      data = [];
+  }
 
   return (
     <View style={styles.menuContainer}>
@@ -21,6 +40,9 @@ const Menu = () => {
         <TouchableWithoutFeedback onPress={() => handleMenuItemPress('service')}>
             <Text style={selectedMenuItem === 'service' ? styles.default : styles.reset}>service</Text>
         </TouchableWithoutFeedback>
+
+        <List data={data} />
+
     </View>
   );
 };
