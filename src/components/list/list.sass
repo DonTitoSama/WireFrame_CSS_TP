@@ -1,33 +1,44 @@
 .container
   position: absolute
-  top: 200px
+  top: 170
+  left: 10
+  right: 10
+  flex: 1
 
 .scrollView
   flex: 1
 
-.scrollViewContent
-  flexGrow: 1
-  alignItems: center
-
 .listContainer
   width: 100%
-  padding: 10px
-  background-color: #fff
-  border-radius: 8px
-  shadow-color: #000
-  shadow-opacity: 0.1
-  shadow-radius: 4px
-  elevation: 4
+  margin-left: auto
+  margin-right: auto
 
 .itemContainer
-  flexDirection: row
-  alignItems: center
+  flex-direction: row
+  align-items: center
   padding: 8px
-  borderBottomWidth: 1px
-  borderBottomColor: #ccc
+  border: 1px solid #B8B8B8
+  border-radius: 8px
+  margin-bottom: 10px
 
-.switchContainer
-  marginRight: 10px
+.checkboxContainer
+  margin-left: auto
+  right: 10px
 
 .itemText
-  fontSize: 16px
+  font-size: 16px
+
+.icon
+  margin-right: 25px
+  height: 50px
+  width: 50px
+
+.personInfoContainer
+  flex: 1
+  flex-direction: row
+  align-items: center
+
+.personName
+  font-weight: bold
+  font-size: 20px
+  flex: 1

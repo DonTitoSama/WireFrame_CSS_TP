@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './list.sass';
 
 const List = ({ data }) => {
   const [peopleData, setPeopleData] = useState([]);
 
-  // Mettre à jour l'état peopleData lorsque les données changent
   useEffect(() => {
     setPeopleData(data);
   }, [data]);
@@ -21,21 +20,26 @@ const List = ({ data }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollViewContent}
-      >
+      <ScrollView style={styles.scrollView}>
         <View style={styles.listContainer}>
-          {peopleData.map((person, index) => (
+          {peopleData.slice(0, 6).map((person, index) => (
             <View key={index} style={styles.itemContainer}>
-              <View style={styles.switchContainer}>
-                <CheckBox
-                  disabled={false}
-                  value={person.active} 
-                  onValueChange={() => toggleActive(index)}
-                />
+              {/* Icon */}
+              <Image source={require('./icon.png')} style={styles.icon} />
+
+              {/* Person Info */}
+              <View style={styles.personInfoContainer}>
+                <Text style={styles.personName}>{`${person.firstName} ${person.lastName}`}</Text>
+                
+                {/* Checkbox */}
+                <View style={styles.checkboxContainer}>
+                  <CheckBox
+                    disabled={false}
+                    value={person.active} 
+                    onValueChange={() => toggleActive(index)}
+                  />
+                </View>
               </View>
-              <Text style={styles.personName}>{`${person.firstName} ${person.lastName}`}</Text>
             </View>
           ))}
         </View>

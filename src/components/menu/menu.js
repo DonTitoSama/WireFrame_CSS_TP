@@ -8,10 +8,16 @@ import dataCuisine from './dataCuisine';
 import dataService from './dataService';
 
 const Menu = () => {  
-  const [selectedMenuItem, setSelectedMenuItem] = useState('salle');
+  const [selectedMenuItem, setSelectedMenuItem] = useState('salle'); // État pour suivre l'élément sélectionné
+  const [cuisineClicked, setCuisineClicked] = useState(false); // État pour suivre si "Cuisine" a été cliqué
 
   const handleMenuItemPress = (item) => {
     setSelectedMenuItem(item);
+    if (item === 'cuisine') {
+      setCuisineClicked(true);
+    } else {
+      setCuisineClicked(false);
+    }
   };
 
   let data;
@@ -38,7 +44,7 @@ const Menu = () => {
             <Text style={selectedMenuItem === 'cuisine' ? styles.default : styles.reset}>cuisine</Text>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => handleMenuItemPress('service')}>
-            <Text style={selectedMenuItem === 'service' ? styles.default : styles.reset}>service</Text>
+            <Text style={selectedMenuItem === 'service' ? styles.default : styles.reset} disabled={!cuisineClicked}>service</Text>
         </TouchableWithoutFeedback>
 
         <List data={data} />
