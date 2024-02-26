@@ -9,19 +9,13 @@ import dataCuisine from './dataCuisine';
 import dataService from './dataService';
 
 const Menu = () => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState('salle'); // État pour suivre l'élément sélectionné
-  const [cuisineClicked, setCuisineClicked] = useState(false); // État pour suivre si "Cuisine" a été cliqué
-  const [salleChecked, setSalleChecked] = useState(false); // État pour suivre si une checkbox a été cochée dans la catégorie 'salle'
-  const [cuisineChecked, setCuisineChecked] = useState(false); // État pour suivre si une checkbox a été cochée dans la catégorie 'cuisine'
-  const [serviceChecked, setServiceChecked] = useState(false); // État pour suivre si une checkbox a été cochée dans la catégorie 'service'
+  const [selectedMenuItem, setSelectedMenuItem] = useState('salle');
+  const [salleChecked, setSalleChecked] = useState(false);
+  const [cuisineChecked, setCuisineChecked] = useState(false);
+  const [serviceChecked, setServiceChecked] = useState(false);
 
   const handleMenuItemPress = (item) => {
     setSelectedMenuItem(item);
-    if (item === 'cuisine') {
-      setCuisineClicked(true);
-    } else {
-      setCuisineClicked(false);
-    }
   };
 
   const handleCategoryCheckedChange = (category, isChecked) => {
@@ -49,10 +43,14 @@ const Menu = () => {
         <Text style={selectedMenuItem === 'cuisine' ? styles.default : styles.reset}>cuisine</Text>
       </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={() => handleMenuItemPress('service')}>
-        <Text style={selectedMenuItem === 'service' ? styles.default : styles.reset} disabled={!cuisineClicked}>service</Text>
+        <Text style={selectedMenuItem === 'service' ? styles.default : styles.reset}>service</Text>
       </TouchableWithoutFeedback>
 
-      <List category={selectedMenuItem} data={selectedMenuItem === 'salle' ? dataSalle : selectedMenuItem === 'cuisine' ? dataCuisine : dataService} onCheckedChange={(isChecked) => handleCategoryCheckedChange(selectedMenuItem, isChecked)} />
+      <List
+        category={selectedMenuItem}
+        data={selectedMenuItem === 'salle' ? dataSalle : selectedMenuItem === 'cuisine' ? dataCuisine : dataService}
+        onCheckedChange={(isChecked) => handleCategoryCheckedChange(selectedMenuItem, isChecked)}
+      />
 
       {salleChecked && cuisineChecked && serviceChecked && (
         <ValidButton/>

@@ -3,12 +3,24 @@ import { View, Text, Image } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './list.sass';
 
-const List = ({ data }) => {
+const List = ({ category, data, onCheckedChange }) => {
   const [peopleData, setPeopleData] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     setPeopleData(data);
   }, [data]);
+
+  useEffect(() => {
+    // Vérifier si au moins une case est cochée dans la catégorie actuelle
+    const atLeastOneChecked = peopleData.some(person => person.active);
+    setIsChecked(atLeastOneChecked);
+
+    // Signaler à Menu le changement d'état de la catégorie actuelle
+    if (onCheckedChange) {
+      onCheckedChange(atLeastOneChecked);
+    }
+  }, [peopleData, onCheckedChange]);
 
   const toggleActive = (index) => {
     setPeopleData(prevData => {
