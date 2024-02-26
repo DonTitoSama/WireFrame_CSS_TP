@@ -51,11 +51,7 @@ const Menu = () => {
         data={selectedMenuItem === 'salle' ? dataSalle : selectedMenuItem === 'cuisine' ? dataCuisine : dataService}
         onCheckedChange={(isChecked) => handleCategoryCheckedChange(selectedMenuItem, isChecked)}
       />
-
-      {salleChecked && cuisineChecked && serviceChecked && (
-        <ValidButton/>
-      )}
-    </View>
+  </View>
   );
 };
 

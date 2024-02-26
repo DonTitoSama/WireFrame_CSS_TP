@@ -6,7 +6,7 @@ const ValidButton = () => {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.text}>Suivant</Text>
+        <Text style={styles.text}>Suivant &#8594;</Text>
     </View>
   );
 };
